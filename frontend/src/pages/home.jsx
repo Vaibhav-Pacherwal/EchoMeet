@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { IconButton, Button } from "@mui/material";
 import RestoreIcon from "@mui/icons-material/Restore"
 import TextField from "@mui/material/TextField";
-import "../home.css"
+import "../home.css";
+import server from "../environment";
 
 export default function Home({ getHistory, addHistory }) {
     let navigate = useNavigate();
@@ -26,7 +27,7 @@ export default function Home({ getHistory, addHistory }) {
                         <p className="history">History</p>
                     </IconButton>
                     <Button onClick={async () => {
-                        await fetch("http://localhost:8000/logout", {
+                        await fetch(`${server}/logout`, {
                             method: "POST",
                             credentials: "include"
                         });
