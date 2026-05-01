@@ -28,7 +28,7 @@ function App() {
     console.log(data);
 
     if (res.ok) {
-      router("/home");   // redirect after login
+      router("/home");   
     }
   };
 
@@ -80,9 +80,9 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/auth" element={<Authentication onLogin={handleLogin} onRegister={handleRegister}/>} />
-        <Route path="/:url" element={<VideoMeetComponent />} />
         <Route path="/home" element={<AuthGuard><Home addHistory={addToHistory}/></AuthGuard>}/>
         <Route path="/history" element={<History getHistory={getHistoryOfUser} />}/>
+        <Route path="/:url" element={<VideoMeetComponent />} />
       </Routes>
     </>
   )
