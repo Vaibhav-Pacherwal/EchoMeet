@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import server from "../environment";
 
 const AuthGuard = ({ children }) => {
     const navigate = useNavigate();
@@ -8,7 +9,7 @@ const AuthGuard = ({ children }) => {
     useEffect(() => {
         const verifyUser = async () => {
             try {
-                const res = await fetch("http://localhost:8000/verify", {
+                const res = await fetch(`${server}/verify`, {
                     method: "GET",
                     credentials: "include"
                 });

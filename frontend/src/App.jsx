@@ -8,13 +8,14 @@ import VideoMeetComponent from './pages/videoMeet'
 import Home from './pages/home'
 import AuthGuard from './utils/withAuth'
 import History from './pages/history'
+import server from './environment'
 
 function App() {
 
   const router = useNavigate();
 
   const handleLogin = async ({ username, password }) => {
-    const res = await fetch("http://localhost:8000/api/v1/users/login", {
+    const res = await fetch(`${server}/api/v1/users/login`, {
       method: "POST",
       credentials: "include",
       headers: {
@@ -33,7 +34,7 @@ function App() {
 
   const handleRegister = async (data) => {
     try {
-      const res = await axios.post("http://localhost:8000/api/v1/users/register", data);
+      const res = await axios.post(`${server}/api/v1/users/register`, data);
       console.log(res.data.message);
     } catch (err) {
       if (err.response?.status === 409) {
@@ -46,7 +47,7 @@ function App() {
 
   const getHistoryOfUser = async () => {
     try {
-      const res = await axios.get("http://localhost:8000/api/v1/users/get_all_activity", 
+      const res = await axios.get(`${server}/api/v1/users/get_all_activity`, 
         {
           withCredentials: true
         }
@@ -61,7 +62,7 @@ function App() {
   const addToHistory = async (meetingCode) => {
     try {
       const res = await axios.post(
-        "http://localhost:8000/api/v1/users/add_to_activity",
+        `${server}/api/v1/users/add_to_activity`,
         { meetingCode }, 
         {
           withCredentials: true
