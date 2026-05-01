@@ -1,0 +1,278 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&family=DM+Mono:wght@400;500&display=swap');
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #080808;
+}
+
+/* ── Reset ─────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ══════════════════════════════════════════════════════════════
+   ROOT CONTAINER
+══════════════════════════════════════════════════════════════ */
+.landingPageContainer {
+  font-family: 'DM Sans', sans-serif;
+  background: #080808 !important;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ambient glow blobs */
+.landingPageContainer::before,
+.landingPageContainer::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: 0;
+}
+.landingPageContainer::before {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(232,137,12,0.12) 0%, transparent 70%);
+  top: -160px;
+  right: 10%;
+}
+.landingPageContainer::after {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(100,80,200,0.08) 0%, transparent 70%);
+  bottom: -100px;
+  left: 5%;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   NAV
+══════════════════════════════════════════════════════════════ */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 48px;
+  height: 64px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 10;
+  border-bottom: 0.5px solid rgba(255,255,255,0.06);
+}
+
+.navHeader h2 {
+  font-size: 1.8rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.5px;
+  color: #fff !important;
+}
+
+.navHeader h2 span {
+  color: #E8890C !important;
+}
+
+.navList {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* History icon button */
+.navList .MuiIconButton-root {
+  color: rgba(255,255,255,0.65) !important;
+  font-family: 'DM Sans', sans-serif !important;
+  border-radius: 10px !important;
+  padding: 6px 14px !important;
+  gap: 6px;
+  transition: background 0.15s, color 0.15s !important;
+}
+
+.navList .MuiIconButton-root:hover {
+  background: rgba(255,255,255,0.06) !important;
+  color: #fff !important;
+}
+
+.navList .MuiIconButton-root .MuiSvgIcon-root {
+  font-size: 18px !important;
+}
+
+.navList .history {
+  font-size: 17px !important;
+  font-family: 'DM Sans', sans-serif !important;
+  color: inherit !important;
+  margin: 0 !important;
+  line-height: 1 !important;
+}
+
+/* Logout button */
+.navList > .MuiButton-root {
+  color: #E8890C !important;
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+  border: 0.5px solid rgba(232,137,12,0.35) !important;
+  border-radius: 10px !important;
+  padding: 6px 18px !important;
+  letter-spacing: 0.2px;
+  transition: background 0.15s, border-color 0.15s !important;
+  transform: none !important;
+}
+
+.navList > .MuiButton-root:hover {
+  background: rgba(232,137,12,0.1) !important;
+  border-color: rgba(232,137,12,0.6) !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   MAIN CONTENT
+══════════════════════════════════════════════════════════════ */
+.landingMainContainer {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 56px;
+  position: relative;
+  z-index: 1;
+  gap: 40px;
+  min-height: calc(100vh - 64px);
+}
+
+/* ── Left panel ── */
+.left-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  max-width: 520px;
+  animation: fadeUp 0.5s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.left-panel h6 {
+  font-size: clamp(26px, 3vw, 40px) !important;
+  font-weight: 700 !important;
+  line-height: 1.18 !important;
+  letter-spacing: -0.8px !important;
+  color: #fff !important;
+}
+
+/* Highlight "Quality" words in orange */
+.left-panel h6 em {
+  font-style: normal;
+  color: #E8890C;
+}
+
+/* Input + Join row */
+.left-panel .em-join-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* MUI TextField */
+.left-panel .MuiOutlinedInput-root {
+  background: rgba(255,255,255,0.05) !important;
+  border-radius: 12px !important;
+  color: #fff !important;
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 14px !important;
+  min-width: 220px;
+}
+
+.left-panel .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(255,255,255,0.12) !important;
+}
+
+.left-panel .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(255,255,255,0.25) !important;
+}
+
+.left-panel .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #E8890C !important;
+}
+
+.left-panel .MuiInputLabel-root {
+  color: rgba(255,255,255,0.35) !important;
+  font-family: 'DM Sans', sans-serif !important;
+}
+
+.left-panel .MuiInputLabel-root.Mui-focused {
+  color: #E8890C !important;
+}
+
+.left-panel .MuiInputBase-input {
+  color: #fff !important;
+  padding: 16px 26px !important;
+}
+
+/* Join button */
+.left-panel .MuiButton-contained {
+  background: #E8890C !important;
+  color: #fff !important;
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  text-transform: none !important;
+  border-radius: 12px !important;
+  padding: 10px 26px !important;
+  box-shadow: 0 0 0 0 rgba(232,137,12,0) !important;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  transition: background 0.15s, transform 0.12s, box-shadow 0.2s !important;
+}
+
+.left-panel .MuiButton-contained:hover {
+  background: #CF7A0A !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 8px 24px rgba(232,137,12,0.3) !important;
+}
+
+.left-panel .MuiButton-contained:active {
+  transform: translateY(0) scale(0.97) !important;
+  box-shadow: none !important;
+}
+
+/* Subline under the input row */
+.left-panel .em-subline {
+  font-size: 12.5px;
+  color: rgba(255,255,255,0.28);
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.3px;
+  margin-top: -10px;
+}
+
+/* ── Right panel ── */
+.right-panel {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 560px;
+  animation: fadeUp 0.5s 0.1s ease both;
+}
+
+.right-panel img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  /* Invert the white illustration to match dark theme */
+  filter: invert(1) brightness(0.75) sepia(0.3) hue-rotate(5deg);
+  opacity: 0.85;
+  animation: float 5s ease-in-out infinite;
+  user-select: none;
+  pointer-events: none;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-14px); }
+}

@@ -1,0 +1,528 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap');
+
+.em-meet-root *,
+.em-meet-root *::before,
+.em-meet-root *::after {
+  box-sizing: border-box;
+}
+
+.em-meet-root {
+  font-family: 'DM Sans', sans-serif;
+  background: #080808;
+  color: #ffffff;
+  min-height: 100vh;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   LOBBY
+══════════════════════════════════════════════════════════════ */
+
+.em-meet-root .em-lobby {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+}
+
+.em-meet-root .em-lobby h2 {
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.4px;
+  color: #ffffff;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.em-meet-root .em-lobby h2::before {
+  content: '';
+  display: block;
+  width: 38px;
+  height: 4px;
+  background: #E8890C;
+  border-radius: 2px;
+  margin: 0 auto 14px;
+}
+
+.em-meet-root .em-lobby .MuiOutlinedInput-root {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 11px;
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  min-width: 300px;
+}
+
+.em-meet-root .em-lobby .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+.em-meet-root .em-lobby .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(255, 255, 255, 0.25) !important;
+}
+
+.em-meet-root .em-lobby .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #E8890C !important;
+}
+
+.em-meet-root .em-lobby .MuiInputLabel-root {
+  color: rgba(255, 255, 255, 0.4);
+  font-family: 'DM Sans', sans-serif;
+}
+
+.em-meet-root .em-lobby .MuiInputLabel-root.Mui-focused {
+  color: #E8890C;
+}
+
+.em-meet-root .em-lobby .MuiInputBase-input {
+  color: #fff;
+}
+
+.em-meet-root .em-lobby .MuiButton-contained {
+  background: #E8890C !important;
+  color: #fff !important;
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+  border-radius: 11px !important;
+  padding: 10px 28px !important;
+  margin-top: 14px !important;
+  box-shadow: none !important;
+  width: 100%;
+  max-width: 300px;
+  transition: background 0.15s, transform 0.1s !important;
+}
+
+.em-meet-root .em-lobby .MuiButton-contained:hover {
+  background: #CF7A0A !important;
+  transform: scale(1.02);
+}
+
+.em-meet-root .em-lobby .MuiButton-contained:active {
+  transform: scale(0.97) !important;
+}
+
+.em-meet-root .em-lobby .em-preview-wrap {
+  margin-top: 24px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 0.5px solid rgba(255, 255, 255, 0.1);
+  background: #0e0e0e;
+  position: relative;
+  width: 340px;
+  aspect-ratio: 16 / 9;
+}
+
+.em-meet-root .em-lobby .em-preview-wrap video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scaleX(-1);
+}
+
+.em-meet-root .em-lobby .em-preview-wrap::after {
+  content: '● Live preview';
+  position: absolute;
+  bottom: 10px;
+  left: 12px;
+  background: rgba(0, 0, 0, 0.6);
+  border: 0.5px solid rgba(255, 255, 255, 0.1);
+  border-radius: 7px;
+  padding: 4px 10px;
+  font-size: 11px;
+  color: #E8890C;
+  letter-spacing: 0.2px;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   CALL VIEW
+══════════════════════════════════════════════════════════════ */
+
+.em-meet-root .em-call {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  overflow: hidden;
+}
+
+/* ── Remote grid: fills the entire screen ── */
+.em-meet-root .em-call .em-remote-grid {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  gap: 2px;
+  background: #111;
+
+  /* 1 remote  → full screen */
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+}
+
+/* 2 remotes → side by side */
+.em-meet-root .em-call .em-remote-grid:has(.em-tile:nth-child(2)) {
+  grid-template-columns: 1fr 1fr;
+}
+
+/* 3 remotes → 2 top + 1 bottom centred */
+.em-meet-root .em-call .em-remote-grid:has(.em-tile:nth-child(3)) {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.em-meet-root .em-call .em-remote-grid:has(.em-tile:nth-child(3)) .em-tile:nth-child(3) {
+  grid-column: 1 / -1;
+}
+
+/* 4+ remotes → auto-fill equal cells */
+.em-meet-root .em-call .em-remote-grid:has(.em-tile:nth-child(4)) {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.em-meet-root .em-call .em-remote-grid:has(.em-tile:nth-child(5)) {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+
+/* ── Individual remote tile ── */
+.em-meet-root .em-call .em-remote-grid .em-tile {
+  position: relative;
+  background: #0d0d0d;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0; /* important: lets grid shrink tiles properly */
+}
+
+.em-meet-root .em-call .em-remote-grid .em-tile::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 40%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.em-meet-root .em-call .em-remote-grid .em-tile h2 {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  z-index: 2;
+  font-size: 11px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.85);
+  background: rgba(0, 0, 0, 0.55);
+  border: 0.5px solid rgba(255, 255, 255, 0.1);
+  border-radius: 7px;
+  padding: 4px 10px;
+  letter-spacing: 0.3px;
+  max-width: 180px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+}
+
+.em-meet-root .em-call .em-remote-grid .em-tile video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── Local stream: fixed PiP bottom-right ── */
+.em-meet-root .em-call .em-local-video {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 200px;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 14px;
+  border: 2px solid #E8890C;
+  background: #0d0d0d;
+  transform: scaleX(-1);
+  z-index: 100;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+  transition: width 0.2s ease, border-color 0.2s ease;
+}
+
+.em-meet-root .em-call .em-local-video:hover {
+  width: 240px;
+  border-color: #fff;
+}
+
+/* ── "You" label on local PiP ── */
+.em-meet-root .em-call .em-local-video-wrap {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 100;
+}
+
+.em-meet-root .em-call .em-local-video-wrap video {
+  width: 200px;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 14px;
+  border: 2px solid #E8890C;
+  background: #0d0d0d;
+  transform: scaleX(-1);
+  display: block;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7);
+  transition: width 0.2s ease, border-color 0.2s ease;
+  cursor: pointer;
+}
+
+.em-meet-root .em-call .em-local-video-wrap video:hover {
+  width: 240px;
+  border-color: #fff;
+}
+
+.em-meet-root .em-call .em-local-video-wrap::after {
+  content: 'You';
+  position: absolute;
+  bottom: 8px;
+  left: 10px;
+  font-size: 10px;
+  font-family: 'DM Sans', sans-serif;
+  color: rgba(255,255,255,0.85);
+  background: rgba(0,0,0,0.55);
+  border-radius: 5px;
+  padding: 2px 8px;
+  pointer-events: none;
+}
+
+.em-call-button-container {
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+  text-align: center;
+  z-index: 1;
+}
+
+.em-call-button-container svg {
+  font-size: 2.5rem;
+}
+
+.em-chat-room {
+  position: fixed;
+  right: 16px;
+  bottom: 88px; /* sits above controls bar */
+  width: 320px;
+  height: calc(100vh - 88px - 16px);
+  max-height: 600px;
+  z-index: 150;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 0.5px solid rgba(255, 255, 255, 0.1);
+  background: #0f0f0f;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  animation: slideInChat 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+ 
+@keyframes slideInChat {
+  from { opacity: 0; transform: translateY(24px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0)   scale(1); }
+}
+ 
+/* ── Header ── */
+.em-chat-room-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+ 
+.em-chat-room-container h1 {
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  color: #fff !important;
+  padding: 16px 18px 14px !important;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.07);
+  letter-spacing: -0.2px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+ 
+/* little chat icon before "Chat" */
+.em-chat-room-container h1::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #E8890C;
+  flex-shrink: 0;
+}
+ 
+/* ── Messages scroll area ── */
+.em-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.1) transparent;
+}
+ 
+.em-messages::-webkit-scrollbar { width: 4px; }
+.em-messages::-webkit-scrollbar-track { background: transparent; }
+.em-messages::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.1);
+  border-radius: 4px;
+}
+ 
+/* Individual message bubble */
+.em-messages > div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  max-width: 85%;
+  animation: msgIn 0.18s ease both;
+}
+ 
+@keyframes msgIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+ 
+/* sender name */
+.em-messages > div p:first-child {
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  color: #E8890C !important;
+  letter-spacing: 0.2px;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+ 
+/* message text bubble */
+.em-messages > div p:last-child {
+  font-size: 13.5px !important;
+  color: rgba(255,255,255,0.88) !important;
+  background: rgba(255,255,255,0.07);
+  border: 0.5px solid rgba(255,255,255,0.08);
+  border-radius: 0 12px 12px 12px;
+  padding: 8px 12px !important;
+  margin: 0 !important;
+  line-height: 1.45;
+  word-break: break-word;
+}
+ 
+/* ── Empty state ── */
+.em-empty-chatbox {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.25) !important;
+  font-size: 13px;
+  text-align: center;
+  padding: 24px;
+  /* reset old positioning */
+  top: unset !important;
+  left: unset !important;
+  transform: none !important;
+}
+ 
+.em-empty-chatbox::before {
+  content: '💬';
+  font-size: 28px;
+  opacity: 0.4;
+}
+ 
+/* ── Typing area ── */
+.em-typing-area {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 12px 14px !important;
+  border-top: 0.5px solid rgba(255, 255, 255, 0.07) !important;
+  background: rgba(255, 255, 255, 0.02) !important;
+  /* reset old absolute positioning */
+  position: relative !important;
+  bottom: unset !important;
+  flex-shrink: 0;
+}
+ 
+/* TextField wrapper stretches to fill remaining space */
+.em-typing-area .MuiFormControl-root {
+  flex: 1 !important;
+  min-width: 0 !important;
+}
+ 
+/* MUI TextField inside chat */
+.em-typing-area .MuiOutlinedInput-root {
+  width: 100% !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  border-radius: 10px !important;
+  color: #fff !important;
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 13.5px !important;
+}
+ 
+.em-typing-area .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+ 
+.em-typing-area .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(255, 255, 255, 0.22) !important;
+}
+ 
+.em-typing-area .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #E8890C !important;
+}
+ 
+.em-typing-area .MuiInputLabel-root {
+  color: rgba(255, 255, 255, 0.3) !important;
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 13px !important;
+}
+ 
+.em-typing-area .MuiInputLabel-root.Mui-focused {
+  color: #E8890C !important;
+}
+ 
+.em-typing-area .MuiInputBase-input {
+  color: #fff !important;
+  padding: 15px 14px !important;
+}
+ 
+/* Send button */
+.em-typing-area .MuiButton-contained {
+  background: #E8890C !important;
+  color: #fff !important;
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+  border-radius: 10px !important;
+  padding: 8px 16px !important;
+  box-shadow: none !important;
+  white-space: nowrap;
+  min-width: unset !important;
+  flex-shrink: 0;
+  transition: background 0.15s, transform 0.1s !important;
+  height: 40px;
+}
+ 
+.em-typing-area .MuiButton-contained:hover {
+  background: #CF7A0A !important;
+}
+ 
+.em-typing-area .MuiButton-contained:active {
+  transform: scale(0.95) !important;
+}

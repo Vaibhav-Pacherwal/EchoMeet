@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #080808;
+}
+
+.em-history-root {
+  font-family: 'DM Sans', sans-serif;
+  background: #080808;
+  min-height: 100vh;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.em-history-root::before {
+  content: '';
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(232,137,12,0.07) 0%, transparent 70%);
+  top: -160px;
+  left: -80px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.em-history-root .em-history-topbar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 40px;
+  height: 64px;
+  border-bottom: 0.5px solid rgba(255,255,255,0.07);
+  position: relative;
+  z-index: 10;
+  flex-shrink: 0;
+}
+
+.em-history-root .em-history-topbar .MuiIconButton-root {
+  color: rgba(255,255,255,0.6) !important;
+  background: rgba(255,255,255,0.05) !important;
+  border: 0.5px solid rgba(255,255,255,0.1) !important;
+  border-radius: 10px !important;
+  width: 38px !important;
+  height: 38px !important;
+  transition: background 0.15s, color 0.15s, border-color 0.15s !important;
+}
+
+.em-history-root .em-history-topbar .MuiIconButton-root:hover {
+  background: rgba(232,137,12,0.12) !important;
+  border-color: rgba(232,137,12,0.35) !important;
+  color: #E8890C !important;
+}
+
+.em-history-root .em-history-topbar .MuiSvgIcon-root {
+  font-size: 20px !important;
+}
+
+.em-history-root .em-history-topbar .em-history-title {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  color: #fff;
+}
+
+.em-history-root .em-history-topbar .em-history-title span {
+  color: #E8890C;
+}
+
+.em-history-root .em-history-content {
+  flex: 1;
+  padding: 36px 40px;
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.em-history-root .em-history-content .em-history-heading {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+  color: #fff;
+  margin-bottom: 6px;
+}
+
+.em-history-root .em-history-content .em-history-sub {
+  font-size: 13px;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 28px;
+  font-family: 'DM Mono', monospace;
+}
+
+.em-history-root .em-cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.em-history-root .em-cards-list .MuiCard-root {
+  background: rgba(255,255,255,0.04) !important;
+  border: 0.5px solid rgba(255,255,255,0.09) !important;
+  border-radius: 14px !important;
+  box-shadow: none !important;
+  transition: border-color 0.18s, background 0.18s, transform 0.15s !important;
+  cursor: default;
+  animation: cardIn 0.3s ease both;
+}
+
+.em-history-root .em-cards-list .MuiCard-root:hover {
+  background: rgba(255,255,255,0.07) !important;
+  border-color: rgba(232,137,12,0.3) !important;
+  transform: translateY(-2px);
+}
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.em-history-root .em-cards-list .MuiCard-root:nth-child(1) { animation-delay: 0.05s; }
+.em-history-root .em-cards-list .MuiCard-root:nth-child(2) { animation-delay: 0.10s; }
+.em-history-root .em-cards-list .MuiCard-root:nth-child(3) { animation-delay: 0.15s; }
+.em-history-root .em-cards-list .MuiCard-root:nth-child(4) { animation-delay: 0.20s; }
+.em-history-root .em-cards-list .MuiCard-root:nth-child(5) { animation-delay: 0.25s; }
+
+.em-history-root .em-cards-list .MuiCardContent-root {
+  padding: 16px 20px !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.em-history-root .em-cards-list .MuiCardContent-root:last-child {
+  padding-bottom: 16px !important;
+}
+
+.em-history-root .em-cards-list .MuiTypography-root:first-child {
+  font-family: 'DM Mono', monospace !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: #E8890C !important;
+  background: rgba(232,137,12,0.1);
+  border: 0.5px solid rgba(232,137,12,0.2);
+  border-radius: 7px;
+  padding: 4px 10px;
+  letter-spacing: 0.4px;
+  margin: 0 !important;
+  white-space: nowrap;
+}
+
+.em-history-root .em-cards-list .MuiTypography-root:last-child {
+  font-size: 12.5px !important;
+  color: rgba(255,255,255,0.4) !important;
+  font-family: 'DM Mono', monospace !important;
+  letter-spacing: 0.2px;
+  margin: 0 !important;
+  white-space: nowrap;
+}
+
+.em-history-root .em-history-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 80px 24px;
+  color: rgba(255,255,255,0.2);
+  text-align: center;
+}
+
+.em-history-root .em-history-empty .em-history-empty-icon {
+  font-size: 40px;
+  opacity: 0.4;
+}
+
+.em-history-root .em-history-empty p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.25);
+  font-family: 'DM Mono', monospace;
+}
