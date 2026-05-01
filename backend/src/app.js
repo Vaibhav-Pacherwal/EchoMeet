@@ -10,6 +10,7 @@ import initSocket from "./controllers/socketManager.js";
 import User from "./models/user.model.js";
 import userRoutes from "./routes/user.routes.js";
 import protect from "./middlewares/verifyToken.js";
+import path from "node:path";
 dotenv.config();
 
 const app = express();
