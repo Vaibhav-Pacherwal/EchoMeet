@@ -10,7 +10,10 @@ import initSocket from "./controllers/socketManager.js";
 import User from "./models/user.model.js";
 import userRoutes from "./routes/user.routes.js";
 import protect from "./middlewares/verifyToken.js";
-import path from "node:path";
+import path from "path";
+import { fileURLToPath } from "url";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 dotenv.config();
 
 const app = express();
