@@ -10,10 +10,6 @@ import initSocket from "./controllers/socketManager.js";
 import User from "./models/user.model.js";
 import userRoutes from "./routes/user.routes.js";
 import protect from "./middlewares/verifyToken.js";
-import path from "path";
-import { fileURLToPath } from "url";
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 dotenv.config();
 
 const app = express();
@@ -29,7 +25,6 @@ app.use(cookieParser())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/api/v1/users", userRoutes);
-app.use(express.static(path.join(__dirname, "../../frontend/dist")));
 
 const port = process.env.PORT;
 const start = async () => {
@@ -49,10 +44,6 @@ app.get("/verify", protect, (req, res) => {
     });
 });
 
-app.get("/*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "../../frontend/dist/index.html"));
-});
-
 app.post("/logout", (req, res) => {
     res.clearCookie("token", {
         httpOnly: true,
@@ -61,4 +52,4 @@ app.post("/logout", (req, res) => {
     });
 
     res.status(200).json({message: "Logged Out"});
-})
+});
