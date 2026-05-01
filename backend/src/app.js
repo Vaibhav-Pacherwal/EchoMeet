@@ -25,6 +25,7 @@ app.use(cookieParser())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/api/v1/users", userRoutes);
+app.use(express.static(path.join(__dirname, "../../frontend/dist")));
 
 const port = process.env.PORT;
 const start = async () => {
@@ -42,6 +43,10 @@ app.get("/verify", protect, (req, res) => {
         authenticated: true,
         user: { _id, name, email }
     });
+});
+
+app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "../../frontend/dist/index.html"));
 });
 
 app.post("/logout", (req, res) => {
